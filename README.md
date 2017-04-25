@@ -12,3 +12,6 @@ http://blog.csdn.net/laughing2333/article/details/51288660
 
 ###
 uploadfile:http://webpy.org/cookbook/storeupload.zh-cn
+
+###
+orm:http://blog.csdn.net/pp634077956/article/details/51079360
