@@ -76,6 +76,17 @@ class StringField(Field):
         if 'ddl' not in kw:
             kw['ddl'] = 'varchar(255)'
         super(StringField, self).__init__(**kw)
+        
+class TimestampField(Field):
+    """
+    保存String类型字段的属性
+    """
+    def __init__(self, **kw):
+        if 'default' not in kw:
+            kw['default'] = 'CURRENT_TIMESTAMP'
+        if 'ddl' not in kw:
+            kw['ddl'] = 'timestamp(14)'
+        super(StringField, self).__init__(**kw)
 
 
 class IntegerField(Field):
