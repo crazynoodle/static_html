@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block main %}
+
+    <div class="container">
+      <div class="well">
+        <form class="form-inline">
+          <select class="form-control">
+            <option>商品名称</option>
+            <option>标签</option>
+            <option>价格小于</option>
+          </select>
+          <input type="text" class="form-control input-sm" placeholder="请输入..">
+          <button type="submit" class="form-control btn btn-default">搜索</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="container">
+{% for good in _goods %}
+      <div class="row">
+        <div class="col-xs-4">
+          <div class="thumbnail">
+            <a href="item_detail.html"><img src="img/dolls.jpg" alt="" width="100%"></a>
+            <h3>{{good.name}}</h3>
+            <p>标签： 
+              {% for tag in _good.tags %}
+              <a class="label label-info" href="index.html">tag.name</a></p>
+              {% endfor %}
+            <p>价格：{{good.price}}元</p>
+            <input type="hidden" name="goods_id" value={ {good['goods_id']} }>
+            <!-- goods_id is used for showing item_details -->
+          </div>
+        </div>
+      </div>
+{% endfor %}
+
+      <nav class="text-center">
+        <ul class="pagination">
+          <li class="disabled"><a href="#">&laquo;</a></li>
+          <li class="active"><a href="#">1</a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li><a href="#">4</a></li>
+          <li><a href="#">&raquo;</a></li>
+        </ul>
+      </nav>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block main %}
+
+<!--     <div class="container">
+      <div class="span12">
+        <div class="alert alert-info">
+          <a class="close" data-dismiss="alert">×</a>
+          <h5>Tips, remove me!</h5>
+          <ul>
+            <li>如果商品已被人购买了，不显示“购买”按钮。</li>
+            <li>请注意买家信息的保护，只有卖家能看到。</li>
+          </ul>
+        </div>
+      </div>
+    </div> -->
+
+{% if _buyer %}
+    <div class="container">
+      <div class="span12">
+        <div class="alert alert-success">
+          <h4>买家信息：</h4>
+          <p>
+          购买时间：{{ _item.deal_time }} <br/>
+          帐号：{{ _buyer.account }} <br/>
+          姓名：{{ _buyer.name }} <br/>
+          电话：{{ _buyer.phone }} <br/>
+          邮编：{{ _buyer.post }} <br/>
+          地址：{{ _buyer.address }}
+          </p>
+        </div>
+      </div>
+{% endif %}
+
+      <div class="span12">
+        <table class="table table-bordered table-striped">
+          <tbody>
+            <tr>
+              <td>名称</td>
+              <td><h2>{{ _item.goods_name }}</h2></td>
+            </tr>
+            <tr>
+              <td>标签</td>
+              <td>
+              {% for tag in _tags %}
+              <span class="label">{{ tag.tag_name }}</span>
+              {% endfor %}
+              </td>
+            </tr>
+            <tr>
+              <td>价格</td>
+              <td><h4>{{ _item.goods_price }}</h4></td>
+            </tr>
+            <tr>
+              <td>主人</td>
+              <td>{ {_owner} }</td>
+            </tr>
+            <tr>
+              <td>创建时间</td>
+              <td>{{ _item.create_time }}</td>
+            </tr>
+            <tr>
+              <td>详细描述</td>
+              <td>{{ _item.description }}</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td> 
+                {% if not _buyer %}
+                  <button class="btn btn-danger">购买</button>
+                  <!-- TODO：添加点击购买事件 -->
+                {% endif %}
+                  <button class="btn btn-default">返回</button>
+                  <!-- TODO：添加点击返回事件 -->
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2"><img src={ { _item.img_filename } } alt="" /></td>
+              <!-- 确保这样可以正确访问图片？ -->
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+{% endblock %}
