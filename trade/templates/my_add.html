@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% block main %}
+
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+
+        <a class="navbar-brand" href="index.html">二手商品交易平台</a>
+         
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">登录</a></li>
+            <li><a href="register.html">注册</a></li>
+            <li class="divider-vertical"></li>
+            <li><a href="my.html">我的功能</a></li>
+            <li><a href="#">退出</a></li>
+          </ul>
+          <form class="navbar-form navbar-right" action="#">
+            <input type="text" class="input-small" placeholder="Username">
+            <input type="password" class="input-small" placeholder="Password">
+          </form>
+        </div>
+
+      </div>
+    </nav>
+
+    <div class="container">
+      <ul class="nav nav-tabs">
+        <li><a href="my.html">我的资料</a></li>
+        <li><a href="my_sell.html">我出售的商品</a></li>
+        <li><a href="my_buy.html">我购买的商品</a></li>
+        <li class="active"><a href="my_add.html">添加新商品</a></li>
+      </ul>
+    </div>
+
+    <div class="container">
+      <form class="well form-horizontal">
+        <fieldset>
+          <legend>添加新商品</legend>
+          <div class="form-group">
+            <label class="control-label col-xs-3" for="name">名称</label>
+            <div class="col-xs-6">
+              <input type="text" class="form-control" id="name">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-xs-3" for="price">价格</label>
+            <div class="col-xs-6">
+              <div class="input-group">
+                <span class="input-group-addon">¥</span><input type="text" class="form-control" id="price" placeholder="0.00"><span class="input-group-addon">元</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-xs-3" for="tags">标签</label>
+            <div class="col-xs-6">
+              <input type="text" class="form-control" id="tags">
+              <span class="help-inline">多个标签间用<span class="label label-warning">空格</span>分隔</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-xs-3" for="photo">上传照片</label>
+            <div class="col-xs-6">
+              <input id="photo" class="form-control" type="file">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label col-xs-3" for="description">详细描述</label>
+            <div class="col-xs-6">
+              <textarea id="description" class="form-control" rows="3"></textarea>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-xs-offset-3 col-xs-3">
+              <button type="submit" class="form-control btn btn-primary">确定</button>
+            </div>
+            <div class="col-xs-3">
+              <button type="reset" class="form-control btn btn-default">取消</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+  </body>
+</html>
+
+{% endblock %}
