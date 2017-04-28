@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block main %}
+
+    <div class="container">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="my.html">我的资料</a></li>
+        <li><a href="my_sell.html">我出售的商品</a></li>
+        <li><a href="my_buy.html">我购买的商品</a></li>
+        <li><a href="my_add.html">添加新商品</a></li>
+      </ul>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-6">
+          <p class="well lead">我的帐户余额 <span class="label label-success">{{ _acct.balance }}</span> 元</p>
+        </div>
+        <div class="col-xs-6">
+          <form class="well form-inline">
+            <div class="input-group">
+              <span class="input-group-addon">¥</span><input type="text" class="form-control" placeholder="0.00"><span class="input-group-addon">元</span>
+            </div>
+            <button class="form-control btn btn-danger">充值</button>
+          </form>
+        </div>
+      </div>
+
+      <table class="table table-bordered table-striped">
+        <tbody>
+          <tr>
+            <td>帐号</td>
+            <td>{{ _acct.account }}</td>
+          </tr>
+          <tr>
+            <td>姓名</td>
+            <td>{{ _acct.name}}</td>
+          </tr>
+          <tr>
+            <td>生日</td>
+            <td>{{_acct.birthday}}</td>
+          </tr>
+          <tr>
+            <td>联系电话</td>
+            <td>{{_acct.phone}}</td>
+          </tr>
+          <tr>
+            <td>地址</td>
+            <td>{{_acct.address}}</td>
+          </tr>
+          <tr>
+            <td>邮编</td>
+            <td>{{_acct.post}}</td>
+          </tr>
+         </tbody>
+      </table>
+    </div>
+
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+  </body>
+</html>
+
+{% endblock %}

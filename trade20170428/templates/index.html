@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% block main %}
+
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <div class="container">
+      <div class="well">
+        <form class="form-inline" action="/" method="POST">
+          <select class="form-control" name="s_factor_name">
+            <option value="goods_name">商品名称</option>
+            <option value="tag">标签</option>
+            <option vaule="price">价格小于</option>
+          </select>
+          <input name="s_text_value" id="s_cnt" type="text" class="form-control input-sm" placeholder="请输入..">
+          <button id="s_btn" type="submit" class="form-control btn btn-default">搜索</button>
+        </form>
+      </div>
+    </div>
+
+    <p type="hidden" value={{_s_factor_value}} id="s_factor_name" name={{_s_factor_name}} ></p>
+
+    <script>
+    var pageid = 1;
+    $("#forword").click(function(){
+      pageid -= 1;
+      if(pageid!=0){
+      $.getJSON("/api/search_goods",
+      {s_name:_s_factor_name, s_value:_s_factor_value, pageid:pageid },
+      function(data,status){
+        if(status=="success"){
+          if(!data.error){
+            $("#item_container").html("");
+            $.each(data,function(i,item){
+              $("#item_container").append(
+                  "<div class=\"row\">" + 
+                    "<div class=\"col-xs-4\">" +
+                      "<div class=\"thumbnail\">" +
+                        "<a href=\"/user/showitem\"><img src=\"" + item.img_filename + "\" alt=\"\" width=\"100%\"></a>" +
+                        "<h3>" + item.goods_name + "</h3>" +
+                        "<p>标签：" +
+                          "<a class=\"label label-info\" href=\"#\">tag.name</a></p>" +
+                        "<p>价格："+ item.goods_price +" 元</p>" +
+                        "<input type=\"hidden\" name=\"goods_id\" value=" + item.goods_id + ">" +
+                      "</div>" +
+                    "</div>"+
+                  "</div>"
+                );
+            });
+          }
+        }
+    });}
+    });
+
+    $("#backword").click(function(){
+      pageid += 1;
+      $.getJSON("/api/search_goods",
+      {s_name:_s_factor_name, s_value:_s_factor_value, pageid:pageid },
+      function(data,status){
+        //TODO:to build the goods list;
+      })
+    });
+    </script>
+
+    <div class="container" >
+    <div class="container" id="item_container">
+{% if _goods %}
+{% for good in _goods %}
+      <div class="row">
+        <div class="col-xs-4">
+          <div class="thumbnail">
+            <a href="item_detail.html"><img src="img/dolls.jpg" alt="" width="100%"></a>
+            <h3>{{good.name}}</h3>
+            <p>标签： 
+              {% for tag in _good.tags %}
+              <a class="label label-info" href="index.html">tag.name</a></p>
+              {% endfor %}
+            <p>价格：{{ good.price }} 元</p>
+            <input type="hidden" name="goods_id" value={ {good['goods_id']} }>
+            <!-- goods_id is used for showing item_details -->
+          </div>
+        </div>
+      </div>
+{% endfor %}
+{% endif %}
+    </div>
+
+      <nav class="text-center">
+        <ul class="pagination">
+          <li class="disabled"><a id='forward' href="#">&laquo;</a></li>
+          <li class="active"><a href="#">1</a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li><a href="#">4</a></li>
+          <li><a id="backward" href="#">&raquo;</a></li>
+        </ul>
+      </nav>
+
+    </div>
+{% endblock %}
