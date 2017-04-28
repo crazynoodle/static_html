@@ -1,0 +1,20 @@
+{% extends 'frame.html' %}
+
+{% block main %}
+
+<div>
+<strong>Using one of these accounts:</strong>
+<ul>
+{% for i in accounts %}
+<li>
+{{ i[0] }}: {{ i[1] }}
+</li>
+{% endfor %}
+</ul>
+</div>
+        <form class="well form-search" action="/login" method="POST">
+          <input type="text" class="input-medium" placeholder="Username" name="name"/>
+          <input type="text" class="input-medium" placeholder="Password" name="passwd"/>
+          <button type="submit" class="btn">Sign In</button>
+        </form>
+{% endblock %}

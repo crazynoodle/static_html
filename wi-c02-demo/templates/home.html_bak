@@ -1,0 +1,34 @@
+{% extends 'frame.html' %}
+{% block main %}
+
+<div>
+<form class="form-horizontal well" action="/transfer" method="POST">
+<legend>Credit Transfer</legend>
+<div class="control-group">
+   <label class="control-label" for="textarea">Receiver</label>
+		<div class="controls">
+              <select id="select01" name="receiver">
+                <option value="ada">ada</option>
+                <option value="bob">bob</option>
+                <option value="candy">candy</option>
+                <option value="david">david</option>
+              </select>
+            </div>
+</div>
+<div class="control-group">
+   <label class="control-label" for="textarea">Amount</label>
+             <div class="controls">
+              <input type="text" name="amount" class="input-xlarge" id="input01">
+              <p class="help-block">Current credit: {{ _user['credit'] }}</p>
+            </div>
+</div>
+<div class="control-group">
+   <div class="controls">
+      <input type="submit" class="btn btn-default" />
+   </div>
+</div>
+</form>
+</div>
+
+<div>
+{% endblock %}
